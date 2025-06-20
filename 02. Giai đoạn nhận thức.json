@@ -1,0 +1,193 @@
+{
+  "tieu_de_chuong": "Trạng Thái Nhận Thức Của Khách Hàng Tiềm Năng và Cách Tối Ưu Tiêu Đề Quảng Cáo Theo Phương Pháp Eugene Schwartz (Chương 2)",
+  "gioi_thieu": {
+    "noi_dung": "Chương 2 tập trung vào việc hiểu 'Trạng thái nhận thức của khách hàng tiềm năng' và cách tận dụng nó để viết tiêu đề quảng cáo hiệu quả. Sau khi xác định khát khao của đám đông và tính năng sản phẩm cốt lõi, quảng cáo trở thành cầu nối giữa thị trường và sản phẩm. Tiêu đề là lối vào cầu nối này, có vai trò cực kỳ quan trọng trong việc dẫn dắt khách hàng tiềm năng.",
+    "luu_y_cau_noi": "Nếu quảng cáo là cầu nối, tiêu đề là lối vào. Lối vào kém hiệu quả sẽ khiến khách hàng tiềm năng không bao giờ bước lên cầu nối."
+  },
+  "nen_tang_tieu_de_quang_cao": {
+    "noi_dung": "Để xây dựng tiêu đề mạnh mẽ, cần hiểu sâu thị trường. Tiêu đề không nhất thiết phải đề cập sản phẩm, mà tập trung vào thị trường mục tiêu.",
+    "ba_cau_hoi_cot_loi": [
+      {
+        "cau_hoi": "Mong muốn chung tạo ra thị trường này là gì?",
+        "giai_thich": "Đã khám phá ở các giai đoạn trước."
+      },
+      {
+        "cau_hoi": "Những người này biết bao nhiêu về cách tính năng sản phẩm của bạn thỏa mãn mong muốn này?",
+        "giai_thich": "Đây chính là Trạng thái nhận thức của họ."
+      },
+      {
+        "cau_hoi": "Đã có bao nhiêu sản phẩm khác được giới thiệu cho họ trước sản phẩm của bạn?",
+        "giai_thich": "Đây là Trạng thái bão hòa của họ."
+      }
+    ],
+    "quan_diem": "Việc hiểu rõ tư duy hiện tại của thị trường (Trạng thái nhận thức và Trạng thái bão hòa) trực tiếp quyết định nội dung tiêu đề, ưu tiên hơn việc đề cập trực tiếp sản phẩm. Mức độ bão hòa thị trường ngụ ý một thị trường năng động và phát triển."
+  },
+  "nhiem_vu_thuc_su_cua_tieu_de": {
+    "noi_dung": "Nhiệm vụ duy nhất của tiêu đề là dừng khách hàng tiềm năng lại và buộc họ đọc câu thứ hai của quảng cáo. Mỗi câu sau đó có nhiệm vụ buộc họ đọc câu tiếp theo. Cố gắng bán hàng toàn bộ trong tiêu đề là lãng phí ngân sách, trừ trường hợp rất đặc biệt (khách hàng đang tìm kiếm sản phẩm cụ thể và có ưu đãi giảm giá)."
+  },
+  "cac_cap_do_nhan_thuc": [
+    {
+      "cap_do_stt": 1,
+      "ten_cap_do_goc": "Nhận thức đầy đủ (The Most Aware)",
+      "ten_chuan_hoa": "Cấp độ 1: Nhận thức cao nhất (The Most Aware)",
+      "mo_ta_ngan_gon": "Khách hàng biết sản phẩm, chức năng, và muốn mua. Vấn đề duy nhất là chưa hành động mua hàng.",
+      "chien_luoc_tieu_de_chinh": "Đơn giản, nêu tên sản phẩm + ưu đãi/giá. Giá trở thành động lực chính.",
+      "vi_du_tieu_de_minh_hoa": [
+        "Revere Zomar Lens, Electric Eye Camera—Formerly $149.50—Now Only $119.95."
+      ]
+    },
+    {
+      "cap_do_stt": 2,
+      "ten_cap_do_goc": "Biết sản phẩm nhưng chưa muốn (The Customer Knows of the Product But Doesn't Yet Want It)",
+      "ten_chuan_hoa": "Cấp độ 2: Biết đến sản phẩm – chưa mua",
+      "mo_ta_ngan_gon": "Khách hàng biết về sản phẩm, có thể đã nghe tên thương hiệu, nhưng chưa hoàn toàn hiểu rõ chức năng, chưa bị thuyết phục về hiệu quả, hoặc chưa được thông báo về những cải tiến mới.",
+      "chien_luoc_tieu_de_chinh": "Làm sâu sắc thêm nhận thức và thúc đẩy mong muốn. Đề cập tên sản phẩm, làm nổi bật sự vượt trội hoặc lợi ích cụ thể. Trong một thị trường đã nhận thức về danh mục sản phẩm, sự khác biệt thông qua sự vượt trội được chứng minh là tối quan trọng.",
+      "bay_nhiem_vu_tieu_de": [
+        {
+          "nhiem_vu": "Củng cố mong muốn",
+          "mo_ta_chi_tiet": "Sử dụng liên tưởng, ví dụ, hoặc làm sắc nét cảm giác để tăng cường mong muốn hiện có.",
+          "vi_du": [
+            "Steinway—The Instrument of the Immortals.",
+            "Which Twin Has the Toni?",
+            "Tastes like you just picked it—Dole."
+          ]
+        },
+        {
+          "nhiem_vu": "Làm sắc nét hình ảnh",
+          "mo_ta_chi_tiet": "Tập trung vào sản phẩm hữu hình hoặc Cách Hoạt Động để làm rõ cách nó thỏa mãn mong muốn.",
+          "vi_du": [
+            "At 60 miles an hour, the loudest noise in a Rolls Royce is the electric clock."
+          ]
+        },
+        {
+          "nhiem_vu": "Mở rộng hình ảnh",
+          "mo_ta_chi_tiet": "Chỉ ra nơi và khi nào sản phẩm có thể thỏa mãn mong muốn, mở rộng bối cảnh sử dụng.",
+          "vi_du": [
+            "Anywhere you go. Hertz is always nearby.",
+            "Thirst knows no season (quảng cáo Coca Cola mùa đông)."
+          ]
+        },
+        {
+          "nhiem_vu": "Giới thiệu bằng chứng mới",
+          "mo_ta_chi_tiet": "Cung cấp bằng chứng, chi tiết, tài liệu mới để chứng minh hiệu quả của sản phẩm.",
+          "vi_du": [
+            "9 out of 10 screen stars use Lux Toilet Soap for their priceless smooth skins."
+          ]
+        },
+        {
+          "nhiem_vu": "Công bố Cách Hoạt Động mới",
+          "mo_ta_chi_tiet": "Giới thiệu một tính năng hoặc cải tiến mới giúp sản phẩm thỏa mãn mong muốn tốt hơn.",
+          "vi_du": [
+            "Hoovers new invention washes floors and vacuums up the scrub water."
+          ]
+        },
+        {
+          "nhiem_vu": "Công bố Cách Hoạt Động loại bỏ hạn chế",
+          "mo_ta_chi_tiet": "Thông báo về một Cách Hoạt Động mới giúp sản phẩm loại bỏ những hạn chế hoặc vấn đề trước đây.",
+          "vi_du": [
+            "You breathe no dusty odors when YOU do it with Lewyt."
+          ]
+        },
+        {
+          "nhiem_vu": "Thay đổi hình ảnh/Cách Hoạt Động",
+          "mo_ta_chi_tiet": "Thay đổi hoàn toàn hình ảnh hoặc Cách Hoạt Động của sản phẩm để khác biệt hóa khỏi đối thủ cạnh tranh. (Sẽ thảo luận chi tiết hơn trong Chương 3)",
+          "vi_du": []
+        }
+      ]
+    },
+    {
+      "cap_do_stt": 3,
+      "ten_cap_do_goc": "Giới thiệu sản phẩm mới (How to Introduce New Products)",
+      "ten_chuan_hoa": "Cấp độ 3: Biết giải pháp – chưa biết sản phẩm",
+      "mo_ta_ngan_gon": "Khách hàng nhận ra hoặc ngay lập tức nhận ra rằng họ muốn những gì sản phẩm làm được, nhưng chưa biết rằng có một sản phẩm (của bạn) có thể làm điều đó cho họ. Mong muốn của họ còn 'chưa được định hình rõ ràng'.",
+      "chien_luoc_tieu_de_chinh": "Nêu tên mong muốn và/hoặc giải pháp trong tiêu đề; chứng minh giải pháp đạt được; chỉ ra Cách Hoạt Động nằm trong sản phẩm của bạn. Việc này đòi hỏi khả năng phân tích, trực giác và sáng tạo ngôn từ.",
+      "vi_du_tieu_de_minh_hoa": [
+        "Light a Lucky, and you'll never miss sweets that make you fat.",
+        "Who else wants a whiter wash with no hard work?",
+        "How to win friends and influence people.",
+        "To men who want to quit work some day.",
+        "When doctors feel rotten this is what they do.",
+        "Now! Run your car without spark plugs!",
+        "Who ever heard of 17,000 blooms from a single plant?"
+      ],
+      "thuoc_tinh_copywriter_can_thiet": [
+        "Phân tích: Xác định thị trường dễ tiếp nhận, vị trí về Trạng thái nhận thức và Trạng thái bão hòa, động lực cảm xúc.",
+        "Trực giác: Cảm nhận xu hướng, đánh giá sức mạnh và hướng đi, xác định thời điểm bùng nổ thị trường.",
+        "Sáng tạo ngôn từ: Đặt tên cho những điều chưa định hình, nắm bắt cảm giác, hy vọng, mong muốn, nỗi sợ hãi bằng lời nói, tạo khẩu hiệu."
+      ]
+    },
+    {
+      "cap_do_stt": 4,
+      "ten_cap_do_goc": "Quảng cáo giải quyết vấn đề (How to Introduce Products That Solve Needs)",
+      "ten_chuan_hoa": "Cấp độ 4: Biết vấn đề - Chưa biết giải pháp",
+      "mo_ta_ngan_gon": "Khách hàng tiềm năng có một nhu cầu rõ ràng và nhận ra ngay lập tức, nhưng họ chưa nhận ra mối liên hệ giữa việc thỏa mãn nhu cầu đó và sản phẩm của bạn.",
+      "chien_luoc_tieu_de_chinh": "Bắt đầu bằng cách nêu tên nhu cầu và/hoặc giải pháp trong tiêu đề. Kịch tính hóa nhu cầu một cách sống động để khách hàng tiềm năng nhận ra mức độ cần giải pháp đó. Cuối cùng, trình bày sản phẩm của bạn như là giải pháp không thể tránh khỏi.",
+      "vi_du_tieu_de_minh_hoa": [
+        "Corns?",
+        "Stops maddening itch.",
+        "Lets portable transistor radios play on ordinary household current.",
+        "Shrinks hemorrhoids without surgery.",
+        "Now! A ring and piston job in a tube!",
+        "Look, Mom! No cavities!",
+        "How a bald-headed barber helped save my hair."
+      ]
+    },
+    {
+      "cap_do_stt": 5,
+      "ten_cap_do_goc": "Thị trường chưa nhận thức (How to Open Up a Completely Unaware Market)",
+      "ten_chuan_hoa": "Cấp độ 5: Chưa nhận thức vấn đề",
+      "mo_ta_ngan_gon": "Đây là cấp độ khó khăn nhất. Khách hàng tiềm năng có thể không nhận thức được mong muốn hoặc nhu cầu của mình, hoặc họ sẽ không thành thật thừa nhận điều đó. Nhu cầu có thể quá chung chung, mơ hồ hoặc là một bí mật không thể diễn đạt bằng lời.",
+      "chien_luoc_tieu_de_chinh": "Không đề cập giá, tên sản phẩm, hoặc tuyên bố trực tiếp về chức năng/mong muốn. Sử dụng 'Tiêu đề Đồng Nhất Hóa/Tự Nhận Diện/Nhận Mình Trong Sản Phẩm' vang vọng cảm xúc, thái độ, sự hài lòng để tập hợp thị trường lại. Mục tiêu duy nhất là khiến khách hàng đọc câu tiếp theo.",
+      "ba_quy_tac_loai_tru_quan_trong": [
+        "Giá cả không có ý nghĩa: Loại bỏ mọi đề cập đến giá cả hoặc giảm giá trong tiêu đề.",
+        "Tên sản phẩm không liên quan: Giữ sản phẩm ra khỏi tiêu đề và thận trọng khi phá vỡ tâm trạng hoặc sự ngụy trang.",
+        "Tuyên bố trực tiếp không hiệu quả: Tuyên bố trực tiếp về những gì sản phẩm làm, mong muốn nó thỏa mãn hoặc vấn đề nó giải quyết sẽ không hiệu quả."
+      ],
+      "phuong_phap_tiep_can_va_vi_du": [
+        {
+          "phuong_phap": "Đặt tên cho ước mơ tiềm ẩn",
+          "mo_ta": "Mở rộng thị trường bằng cách gợi lên hình ảnh của sự khao khát tri thức và phát triển cá nhân.",
+          "vi_du": "THE UNIVERSITY OF THE NIGHT"
+        },
+        {
+          "phuong_phap": "Khai thác nỗi sợ hãi tiềm ẩn",
+          "mo_ta": "Chạm vào nỗi sợ hãi về sự kiệt sức và suy sụp do lối sống không lành mạnh, sau đó trình bày sản phẩm như một giải pháp.",
+          "vi_du": "WHY MEN CRACK.."
+        },
+        {
+          "phuong_phap": "Dẫn dắt vào vấn đề không thể chấp nhận bằng hình ảnh được chấp nhận rộng rãi",
+          "mo_ta": "Bắt đầu bằng một hình ảnh đẹp và được chấp nhận, sau đó dần dần dẫn dắt vào vấn đề tế nhị một cách khéo léo.",
+          "vi_du": "WITHIN THE CURVE OF A WOMAN'S ARM"
+        },
+        {
+          "phuong_phap": "Phản ánh mong muốn tiềm ẩn không thể nói thẳng",
+          "mo_ta": "Sử dụng hình ảnh những người đàn ông mạnh mẽ mà vẻ ngoài của họ tự nó đã thể hiện hình ảnh nam tính mạnh mẽ hơn bất kỳ lời nói nào có thể truyền tải.",
+          "vi_du": "quảng cáo MARLBORO TATTOO"
+        },
+        {
+          "phuong_phap": "Sử dụng sự bất mãn hoặc phản đối chung để thu hút thị trường lớn hơn",
+          "mo_ta": "Khai thác sự bất mãn hiện có (ví dụ: với các hợp đồng dịch vụ TV) để mở rộng thị trường bao gồm những người không phải thợ sửa chữa.",
+          "vi_du": "WHY HAVEN'T TV OWNERS BEEN TOLD THESE FACTS"
+        },
+        {
+          "phuong_phap": "Phản ánh chiến thắng cuối cùng mà khách hàng tiềm năng sẽ đồng cảm",
+          "mo_ta": "Kể một câu chuyện về sự biến đổi và chiến thắng cá nhân, thu hút những người mơ ước đạt được thành công mà không cần nỗ lực ngay lập tức.",
+          "vi_du": "THEY LAUGHED WHEN I SAT DOWN AT THE PIANO. BUT WHEN I STARTED TO PLAY!-"
+        },
+        {
+          "phuong_phap": "Phản ánh kết quả của vấn đề để thu hút người sẽ từ chối vấn đề trực tiếp",
+          "mo_ta": "Mô tả một hậu quả xã hội của vấn đề (ví dụ: hơi thở hôi), cho phép người đọc tự nhận diện mà không cảm thấy bị tấn công trực tiếp.",
+          "vi_du": "OFTEN A BRIDESMAID BUT NEVER A BRIDE"
+        },
+        {
+          "phuong_phap": "Phản ánh kết quả của thành tựu để thu hút người sợ công việc liên quan",
+          "mo_ta": "Tập trung vào lợi ích hữu hình và cảm xúc của thành công, thay vì quá trình học tập.",
+          "vi_du": "HERE'S AN EXTRA $50, GRACE—'I'm making real money now!'"
+        }
+      ]
+    }
+  ],
+  "ket_luan_va_bai_hoc": {
+    "noi_dung": "Hiệu quả của tiêu đề quảng cáo phụ thuộc hoàn toàn vào Trạng thái nhận thức của khách hàng tiềm năng. Thị trường luôn phát triển, đòi hỏi các chiến lược tiêu đề phải liên tục thích nghi. Khách hàng tiềm năng phải đồng cảm với tiêu đề trước khi họ mua sản phẩm. Trong quảng cáo hiệu quả, phong cách có thể thay đổi, nhưng chiến lược (khai thác mong muốn, nỗi sợ hãi, khát vọng con người) thì không."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "Chương": "10.  Kỹ thuật #4 - Tái Định Nghĩa",
+  "Giải_nghĩa": "Thay đổi cách khách hàng hiểu về vấn đề hoặc giải pháp – cho họ một góc nhìn mới, bất ngờ, giúp sản phẩm trở nên khác biệt và cấp thiết hơn.",
+  "Từ_khóa": "Đổi góc nhìn, tạo khung vấn đề mới, lật lại định kiến.",
+  "Nội_dung_chi_tiết": {
+    "Mục_đích_của_Tái_Định_Nghĩa": {
+      "Tiêu_đề": "Mục đích của Tái Định Nghĩa",
+      "Giải_thích": "Mục đích cốt lõi là gán một định nghĩa mới cho sản phẩm, khẳng định sản phẩm là \"cái này\" thay vì \"cái kia\". Mục tiêu chính là loại bỏ các rào cản tiềm năng đối với việc bán hàng, lý tưởng nhất là trước khi khách hàng tiềm năng nhận thức được sự tồn tại của chúng.",
+      "Tầm_quan_trọng": "Chiến lược này không chỉ đơn thuần là việc che giấu nhược điểm hay biện minh cho chúng, mà là việc thay đổi hoàn toàn cách nhược điểm đó được nhìn nhận trong tâm trí khách hàng. Nó định hình nhận thức của họ ngay từ đầu, là một hình thức thuyết phục ban đầu bằng cách thay đổi bối cảnh nhận thức, làm cho thông điệp sau đó trở nên dễ chấp nhận hơn."
+    },
+    "Ba_loại_nhược_điểm_chung_của_sản_phẩm": [
+      {
+        "Loại_nhược_điểm": "Sản phẩm quá phức tạp hoặc khó sử dụng",
+        "Mô_tả": "Đây là những sản phẩm nghe có vẻ quá rắc rối, khó hiểu hoặc đòi hỏi nhiều công sức để sử dụng. Khách hàng tiềm năng thường quay lưng vì họ cảm thấy không đủ khả năng hoặc không muốn bỏ ra nỗ lực cần thiết.",
+        "Ví_dụ_minh_họa": "Cuốn sách hướng dẫn sửa chữa TV nghe có vẻ phức tạp đối với người dùng bình thường."
+      },
+      {
+        "Loại_nhược_điểm": "Sản phẩm không đủ quan trọng hoặc thị trường không đủ rộng",
+        "Mô_tả": "Loại sản phẩm này có sức hấp dẫn cơ bản không đủ lớn để thu hút một thị trường đại chúng. Lợi ích của nó có thể bị coi là nhỏ nhặt hoặc không cấp thiết trong cuộc sống hàng ngày của khách hàng.",
+        "Ví_dụ_minh_họa": "Một khóa học tiếng Anh chỉ tập trung vào ngữ pháp và chính tả có thể không còn hấp dẫn khi nhu cầu thị trường đã thay đổi, và người học tìm kiếm những lợi ích rộng lớn hơn."
+      },
+      {
+        "Loại_nhược_điểm": "Sản phẩm có giá quá cao",
+        "Mô_tả": "Đây là những sản phẩm có giá quá cao so với các sản phẩm cùng loại trên thị trường, khiến khách hàng tiềm năng đơn giản là từ chối khi giá được nhắc đến.",
+        "Ví_dụ_minh_họa": "Một loại bugi có giá cao hơn đáng kể so với các lựa chọn khác trên thị trường."
+      }
+    ],
+    "Ví_dụ_kinh_điển_Lifebuoy": {
+      "Tiêu_đề": "Ví dụ kinh điển: Xà phòng Lifebuoy",
+      "Vấn_đề_ban_đầu": "Lifebuoy là một loại xà phòng làm sạch hiệu quả nhưng có một nhược điểm lớn: mùi thuốc khủng khiếp. Mùi này không thể loại bỏ mà không làm mất đi khả năng làm sạch của sản phẩm.",
+      "Thách_thức_Tái_Định_Nghĩa": "Làm thế nào để biến mùi khó chịu này từ một nhược điểm thành một lợi thế?",
+      "Giải_pháp_Chiến_dịch_BO": "Chiến dịch B.O. (mùi cơ thể) nổi tiếng đã giải quyết vấn đề này một cách tài tình. Quảng cáo chuyển sự chú ý của khách hàng tiềm năng sang mùi cơ thể của chính họ. Lifebuoy được định vị là loại xà phòng siêu mạnh, có khả năng loại bỏ mùi cơ thể mà xà phòng thông thường không làm được. Mùi thuốc mạnh mẽ của Lifebuoy, vốn là nhược điểm, được biến thành bằng chứng không thể chối cãi về 'sức mạnh khử mùi' của nó. Đây là một ví dụ về 'judo concept' – một sự đảo ngược hoàn toàn, biến một nhược điểm thành một tài sản chỉ bằng một ý tưởng duy nhất."
+    },
+    "Ba_loại_Tái_Định_Nghĩa_chi_tiết": [
+      {
+        "Tên_kỹ_thuật": "1. Đơn giản hóa (Simplification)",
+        "Mục_đích": "Giải quyết vấn đề sản phẩm quá phức tạp hoặc khó sử dụng trong tâm trí khách hàng. Thay thế hình ảnh tiêu cực bằng hình ảnh thuận lợi hơn, khiến sản phẩm dễ dàng và đơn giản.",
+        "Cách_hoạt_động": "Tái định nghĩa những gì khách hàng nghĩ về một khái niệm phức tạp thành một điều gì đó đơn giản và dễ tiếp cận hơn. Điều này thường được thực hiện thông qua việc so sánh với những điều quen thuộc, liên hệ sản phẩm phức tạp với những trải nghiệm hàng ngày, dễ hiểu. Thay đổi thuật ngữ, sử dụng các từ ngữ ít gây sợ hãi hơn, tập trung vào các hành động nhỏ, dễ thực hiện thay vì các khái niệm lớn, đáng sợ. Xây dựng niềm tin dần dần (Leo Thang Niềm Tin).",
+        "Ví_dụ": [
+          {
+            "Tên_ví_dụ": "Quảng cáo sách sửa TV",
+            "Vấn_đề_ban_đầu": "Quảng cáo đầu tiên với tiêu đề 'Do your own TV repairs' (Tự sửa TV của bạn) khiến người đọc cảm thấy quá khó khăn.",
+            "Giải_pháp_Tái_Định_Nghĩa": {
+              "Thay_đổi_trọng_tâm": "Quảng cáo không nói về 'sửa chữa' mà nói về 'hỏng hóc và chi phí', chỉ ra chúng có thể không xảy ra nếu TV được chăm sóc đúng cách.",
+              "Chuyển_đổi_tinh_tế": "Chuyển từ việc nói về 'thế giới của khách hàng' (hỏng hóc, chi phí) sang 'thế giới hứa hẹn hơn' (chăm sóc chuyên nghiệp giúp TV hoạt động không gặp sự cố).",
+              "Loại_bỏ_nỗi_sợ_hãi": "Trực tiếp đề cập đến nỗi sợ hãi của người dùng thông thường rằng họ không phải là thợ sửa chữa, nhưng lại đóng khung nó như một lời hứa: 'Và quan trọng nhất, những chuyên gia này đã phát hiện ra rằng bạn không cần phải là một người thợ hay thợ cơ khí để có thể đạt được hiệu suất này từ TV của bạn!'",
+              "Tái_định_nghĩa_sửa_chữa": "Không dùng từ 'sửa chữa' ngay lập tức. Thay vào đó, xây dựng một nền tảng mới, cho thấy hầu hết các 'sửa chữa' thực ra chỉ là những 'điều chỉnh nhỏ bên ngoài'. So sánh TV với cơ thể người, các trục trặc nhỏ giống như 'tín hiệu cảnh báo' hoặc 'triệu chứng'.",
+              "Kết_quả": "'Sửa chữa' được tái định nghĩa thành 'điều chỉnh'. 'Sự cố trên màn hình TV' được tái định nghĩa thành 'tín hiệu cảnh báo' hoặc 'triệu chứng'. Và 'cuộc gọi sửa chữa' hoặc 'hỏng hóc' được tách biệt cẩn thận thành 5% các sự cố TV ít có khả năng xảy ra nhất."
+            }
+          },
+          {
+            "Tên_ví_dụ": "Quảng cáo khóa học tiếng Anh Sherwin Cody",
+            "Vấn_đề_ban_đầu": "Khách hàng tiềm năng đã tin rằng tiếng Anh tốt là quá khó đối với họ vì họ đã từng thất bại.",
+            "Giải_pháp_Tái_Định_Nghĩa": {
+              "Giới_hạn_thời_gian": "'Only 15 Minutes a Day.' (Chỉ 15 phút mỗi ngày.)",
+              "Giảm_thiểu_lượng_kiến_thức": "'Nor is there very much to learn.' (Cũng không có quá nhiều điều để học.) Bằng cách thống kê chỉ ra 69 từ chiếm hơn một nửa số lời nói/văn viết hàng ngày; không quá một tá nguyên tắc chấm câu cơ bản; 25 lỗi ngữ pháp điển hình chiếm 9/10 lỗi hàng ngày.",
+              "Kết_quả": "Cái phức tạp trở nên đơn giản, cái khó trở nên dễ dàng. Tạo cảm giác khả thi và giảm bớt sự choáng ngợp."
+            }
+          }
+        ]
+      },
+      {
+        "Tên_kỹ_thuật": "2. Leo thang (Escalation)",
+        "Mục_đích": "Sử dụng khi sản phẩm hoạt động tốt và dễ sử dụng, nhưng không có sức hấp dẫn đủ rộng để tiếp cận thị trường đại chúng. Mục đích là tăng cường tầm quan trọng của sản phẩm trong mắt khách hàng tiềm năng.",
+        "Cách_hoạt_động": "Mở rộng phạm vi lợi ích của sản phẩm, tái định nghĩa vai trò của sản phẩm trong cuộc sống của khách hàng tiềm năng, và mở rộng lĩnh vực phần thưởng mà sản phẩm mang lại. Điều này được thực hiện bằng cách: mở rộng lợi ích (chuyển các lợi ích từ lĩnh vực ít mong muốn sang lĩnh vực tạo ra sức hấp dẫn lớn hơn); tăng tầm quan trọng của sản phẩm (cho thấy điều khách hàng mong muốn phụ thuộc trực tiếp vào sản phẩm); và cho thấy sự cần thiết hàng ngày.",
+        "Ví_dụ": [
+          {
+            "Tên_ví_dụ": "Quảng cáo khóa học tiếng Anh (40 năm sau)",
+            "Bối_cảnh": "40 năm sau quảng cáo của Sherwin Cody, mọi người không còn quá nhạy cảm với lỗi chính tả hay ngữ pháp. Thay vào đó, mọi người muốn tiếng Anh tốt như một công cụ thuyết phục để giành được người khác.",
+            "Giải_pháp_Tái_Định_Nghĩa": "Tiếng Anh tốt không còn là mục đích tự thân mà được tái định nghĩa thành một phương tiện để đạt được một mục đích quan trọng hơn, được nhiều người mong muốn hơn – đó là công cụ thuyết phục. Từ vựng được nhấn mạnh vì nó có giá trị lớn nhất trong việc thuyết phục người khác.",
+            "Nội_dung_quảng_cáo_minh_họa": [
+              "Revolutionary new Word Power Machine makes you a master of English overnight.",
+              "Automatically gives you a power-packed vocabulary—to make your ideas crackle with excitement—to hold others spellbound with the power of your speech and your written word.",
+              "Automatically spots embarrassing errors in grammar, spelling, pronunciation you didn't even know you were making. Clears them up at on
