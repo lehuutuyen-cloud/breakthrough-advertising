@@ -1,0 +1,743 @@
+import React, { useState, useEffect } from 'react';
+
+// Dữ liệu từ các file nghiên cứu đã được xử lý và Việt hóa
+const data = {
+  giaiDoanNhanThuc: [
+    {
+      id: 'giai_doan_1',
+      name: 'Giai đoạn 1: Nhận thức cao nhất',
+      description: 'Khách hàng đã biết về sản phẩm, chức năng của nó và mong muốn mua. Họ chỉ chưa thực hiện hành động mua.'
+    },
+    {
+      id: 'giai_doan_2',
+      name: 'Giai đoạn 2: Biết đến sản phẩm – chưa mua',
+      description: 'Khách hàng biết sản phẩm, tên thương hiệu của nó và sản phẩm đã được chứng minh có thể đáp ứng một mong muốn chung. Tuy nhiên, họ chưa hoàn toàn bị thuyết phục hoặc chưa biết về cải tiến mới.'
+    },
+    {
+      id: 'giai_doan_3',
+      name: 'Giai đoạn 3: Biết giải pháp – chưa biết sản phẩm',
+      description: 'Khách hàng biết hoặc nhận ra ngay lập tức rằng họ muốn những gì sản phẩm làm, nhưng họ chưa biết rằng có một sản phẩm (sản phẩm của bạn) có thể làm điều đó cho họ. Mong muốn còn mơ hồ.'
+    },
+    {
+      id: 'giai_doan_4',
+      name: 'Giai đoạn 4: Biết vấn đề - Chưa biết giải pháp',
+      description: 'Khách hàng có một nhu cầu rõ ràng và nhận ra nó ngay lập tức, nhưng chưa nhận ra mối liên hệ giữa việc thỏa mãn nhu cầu đó và sản phẩm của bạn. Đây là kiểu quảng cáo giải quyết vấn đề.'
+    },
+    {
+      id: 'giai_doan_5',
+      name: 'Giai đoạn 5: Chưa nhận thức vấn đề',
+      description: 'Khách hàng không nhận thức được mong muốn hay nhu cầu của họ, hoặc không muốn thừa nhận nó nếu không được dẫn dắt bởi quảng cáo. Nhu cầu quá chung chung, mơ hồ, hoặc là một bí mật.'
+    },
+    {
+      id: 'tat_ca_giai_doan',
+      name: 'Tất cả các giai đoạn (1-5)',
+      description: 'Áp dụng cho mọi giai đoạn nhận thức.'
+    }
+  ],
+  giaiDoanBaoHoa: [
+    {
+      id: 'bao_hoa_1',
+      name: 'Giai đoạn 1: Thị trường mới',
+      description: 'Doanh nghiệp là người đầu tiên trong thị trường cụ thể với sản phẩm của mình. Khách hàng chưa có thông tin về các sản phẩm tương tự, do đó họ không có sự tinh vi về sản phẩm.'
+    },
+    {
+      id: 'bao_hoa_2',
+      name: 'Giai đoạn 2: Có một vài đối thủ',
+      description: 'Thị trường đã được khai thác, tuyên bố trực tiếp đã được đưa ra bởi đối thủ đầu tiên. Việc lặp lại đơn thuần không còn đủ để nổi bật.'
+    },
+    {
+      id: 'bao_hoa_3',
+      name: 'Giai đoạn 3: Bội thực lời hứa',
+      description: 'Thị trường đã nghe tất cả các tuyên bố cực đoan, niềm tin bị phá vỡ, khách hàng trở nên hoài nghi. Mong muốn vẫn tồn tại nhưng không thể khai thác bằng các phương pháp cũ.'
+    },
+    {
+      id: 'bao_hoa_4',
+      name: 'Giai đoạn 4: Không còn tin lời hứa, nghi ngờ',
+      description: 'Một đối thủ cạnh tranh vừa giới thiệu một cơ chế mới thành công, và lợi thế của giai đoạn ba chỉ là tạm thời.'
+    },
+    {
+      id: 'bao_hoa_5',
+      name: 'Giai đoạn 5: Thị trường "mất niềm tin"',
+      description: 'Thị trường không còn tin vào quảng cáo (do bão hòa tuyên bố và cơ chế), các đối thủ cạnh tranh rời bỏ thị trường. Lĩnh vực này được coi là "cạn kiệt".'
+    },
+    {
+      id: 'bao_hoa_tat_ca',
+      name: 'Tất cả các giai đoạn bão hòa',
+      description: 'Áp dụng cho mọi giai đoạn bão hòa của thị trường.'
+    }
+  ],
+  congThucCopywriting: [
+    {
+      id: 'AIDA',
+      name: 'AIDA',
+      description: 'AIDA (Attention - Interest - Desire - Action) là khung sườn tuyệt vời để dẫn dắt khách hàng từ sự chú ý ban đầu đến hành động mong muốn.',
+      phuHop: {
+        giai_doan_1: 'Không lý tưởng',
+        giai_doan_2: 'Lý tưởng',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Lý tưởng',
+        giai_doan_5: 'Ít phù hợp trực tiếp',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Khuếch đại mong muốn, làm sắc nét hình ảnh thỏa mãn.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Chứng minh cách sản phẩm hoạt động.' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Khách hàng thấy mình trong sản phẩm, xây dựng bản sắc.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin từng bước.' },
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Gán cách hiểu mới cho sản phẩm.' },
+        { name: '14. Động lực (Momentum)', desc: 'Kéo người đọc đọc tiếp.' },
+        { name: '13. Ngụy trang', desc: 'Vay mượn độ tin cậy từ nguồn bên ngoài.' }
+      ]
+    },
+    {
+      id: 'PAS',
+      name: 'PAS',
+      description: 'PAS (Problem - Agitate - Solution) là công thức cốt lõi cho các quảng cáo giải quyết vấn đề, khuấy động vấn đề và sau đó đưa ra giải pháp.',
+      phuHop: {
+        giai_doan_1: 'Không phù hợp',
+        giai_doan_2: 'Có thể phù hợp',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Rất lý tưởng',
+        giai_doan_5: 'Phù hợp để dẫn dắt vấn đề',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm nổi bật vấn đề, khuếch đại nỗi đau.' },
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Làm rõ giải pháp, biến điểm yếu thành điểm mạnh.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Giải thích cách sản phẩm hoạt động để giải quyết vấn đề.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin vào giải pháp.' },
+        { name: '12. Độc Quyền Giải Pháp (Concentration)', desc: 'Loại bỏ các giải pháp thay thế kém hiệu quả.' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Khách hàng thấy mình trong vấn đề và giải pháp.' },
+        { name: '13. Ngụy trang', desc: 'Tăng độ tin cậy của thông điệp.' }
+      ]
+    },
+    {
+      id: 'BAB',
+      name: 'BAB',
+      description: 'BAB (Before - After - Bridge) minh họa rõ ràng sự chuyển đổi của khách hàng khi sử dụng sản phẩm.',
+      phuHop: {
+        giai_doan_1: 'Không phù hợp',
+        giai_doan_2: 'Lý tưởng',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Rất lý tưởng',
+        giai_doan_5: 'Rất lý tưởng',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Phóng đại trạng thái "Sau khi", khắc họa mặt trái của trạng thái "Trước khi".' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Giúp khách hàng hình dung bản thân trong trạng thái "Sau khi" lý tưởng.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Giải thích cách "Cầu nối" hoạt động.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin vào sự chuyển đổi.' },
+        { name: '12. Độc Quyền Giải Pháp (Concentration)', desc: 'Tấn công các giải pháp cũ, kém hiệu quả.' },
+        { name: '13. Ngụy trang', desc: 'Làm cho thông điệp về sự chuyển đổi trở nên đáng tin cậy hơn.' },
+        { name: '14. Động lực (Momentum)', desc: 'Kéo người đọc theo dõi hành trình chuyển đổi.' }
+      ]
+    },
+    {
+      id: 'FAB',
+      name: 'FAB',
+      description: 'FAB (Features - Advantages - Benefits) tập trung vào việc làm rõ các tính năng, ưu điểm và lợi ích của sản phẩm.',
+      phuHop: {
+        giai_doan_1: 'Không lý tưởng',
+        giai_doan_2: 'Rất lý tưởng',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Lý tưởng',
+        giai_doan_5: 'Ít phù hợp trực tiếp',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Khuếch đại lợi ích, làm sắc nét hình ảnh thỏa mãn.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Giải thích cách các tính năng mang lại ưu điểm và lợi ích.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin vào các tuyên bố về lợi ích.' },
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Làm nổi bật các lợi ích mở rộng hoặc loại bỏ các phản đối.' }
+      ]
+    },
+    {
+      id: 'ACCA',
+      name: 'ACCA',
+      description: 'ACCA (Awareness - Comprehension - Conviction - Action) hiệu quả để xây dựng nhận thức, sự hiểu biết và niềm tin.',
+      phuHop: {
+        giai_doan_1: 'Không lý tưởng',
+        giai_doan_2: 'Lý tưởng',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Lý tưởng',
+        giai_doan_5: '"Nhận thức" cần gián tiếp',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm rõ lợi ích và bằng chứng mới.' },
+        { name: '14. Xác minh (Verification)', desc: 'Cung cấp bằng chứng (số liệu, lời chứng thực).' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Giải thích cách sản phẩm hoạt động.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin từng bước.' },
+        { name: '12. Độc Quyền Giải Pháp (Concentration)', desc: 'Loại bỏ giải pháp thay thế kém hiệu quả.' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Xây dựng tính cách sản phẩm, tạo sự đồng cảm.' },
+        { name: '13. Ngụy trang', desc: 'Mượn niềm tin từ các nguồn đáng tin cậy.' },
+        { name: '14. Động lực (Momentum)', desc: 'Thúc đẩy hành động.' }
+      ]
+    },
+    {
+      id: '4C',
+      name: '4C',
+      description: '4C (Clear - Concise - Credible - Compelling) là các tiêu chí chất lượng tổng quát cho mọi bài copywriting, nhấn mạnh sự rõ ràng, súc tích, hấp dẫn và đáng tin cậy.',
+      phuHop: {
+        giai_doan_1: 'Luôn phù hợp',
+        giai_doan_2: 'Luôn phù hợp',
+        giai_doan_3: 'Luôn phù hợp',
+        giai_doan_4: 'Luôn phù hợp',
+        giai_doan_5: 'Luôn phù hợp',
+        tat_ca_giai_doan: 'Luôn phù hợp'
+      },
+      kyThuat: [
+        { name: '4. Ngôn từ hóa (38 Cách Tăng sức mạnh cho Tiêu đề)', desc: 'Đặt tên rõ ràng cho ưu đãi, đảm bảo thông điệp dễ hiểu.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin từng bước để thông điệp đáng tin cậy.' },
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Làm rõ các khái niệm phức tạp, biến điểm yếu thành điểm mạnh.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Trình bày logic và rõ ràng cách sản phẩm hoạt động.' },
+        { name: '13. Ngụy trang', desc: 'Làm cho thông điệp hòa mình vào khung cảnh, tăng độ tin cậy.' },
+        { name: '14. Xác minh (Verification)', desc: 'Cung cấp bằng chứng cụ thể để tăng độ tin cậy.' },
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm nổi bật thông điệp một cách mạnh mẽ, hấp dẫn.' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Tạo sự đồng cảm, khiến thông điệp hấp dẫn hơn.' },
+        { name: '14. Đan xen (Interweaving)', desc: 'Gói gọn thông tin hiệu quả, tạo dòng chảy thuyết phục liền mạch.' }
+      ]
+    },
+    {
+      id: '4P',
+      name: '4P',
+      description: '4P (Picture - Promise - Prove - Push) giúp tạo hình ảnh sống động, đưa ra lời hứa, chứng minh và thúc đẩy hành động.',
+      phuHop: {
+        giai_doan_1: 'Không phù hợp',
+        giai_doan_2: 'Lý tưởng',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Rất lý tưởng',
+        giai_doan_5: '"Hình ảnh" rất quan trọng',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm cho "Hình ảnh" sống động và "Lời hứa" hấp dẫn hơn.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Trọng tâm để "Chứng minh" cách sản phẩm hoạt động.' },
+        { name: '14. Xác minh (Verification)', desc: 'Cung cấp bằng chứng cụ thể để "Chứng minh".' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin vào "Lời hứa" và "Chứng minh".' },
+        { name: '12. Độc Quyền Giải Pháp (Concentration)', desc: 'Hỗ trợ loại bỏ đối thủ trong phần "Chứng minh".' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Hỗ trợ tạo "Hình ảnh" liên quan đến bản thân khách hàng.' },
+        { name: '13. Ngụy trang', desc: 'Hỗ trợ tăng độ tin cậy của "Hình ảnh" và "Lời hứa".' },
+        { name: '14. Động lực (Momentum)', desc: 'Kéo người đọc tiếp tục theo dõi các bước "Chứng minh" và "Thúc đẩy".' }
+      ]
+    },
+    {
+      id: 'APP',
+      name: 'APP',
+      description: 'APP (Agree - Promise - Preview) giúp xây dựng mối quan hệ, đưa ra lời hứa và gợi mở nội dung sắp được trình bày.',
+      phuHop: {
+        giai_doan_1: 'Không phù hợp',
+        giai_doan_2: 'Có thể phù hợp',
+        giai_doan_3: 'Lý tưởng',
+        giai_doan_4: 'Rất lý tưởng',
+        giai_doan_5: 'Rất lý tưởng',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Làm rõ các khái niệm hoặc loại bỏ rào cản.' },
+        { name: '11. Cách Hoạt Động (Mechanization)', desc: 'Chứng minh cách lời hứa được thực hiện.' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Tạo sự đồng cảm ngay từ bước "Agree".' },
+        { name: '14. Động lực (Momentum)', desc: 'Kéo người đọc tiếp tục theo dõi "Lời hứa" và "Xem trước".' }
+      ]
+    },
+    {
+      id: 'Why_Try_Buy',
+      name: 'Why/Try/Buy Formula',
+      description: 'Công thức này cấu trúc lập luận bán hàng theo ba bước: Tại sao (Why) nên mua, Thử (Try) sản phẩm và Mua (Buy) sản phẩm.',
+      phuHop: {
+        giai_doan_1: 'Không phù hợp',
+        giai_doan_2: 'Thường phù hợp',
+        giai_doan_3: 'Thường phù hợp',
+        giai_doan_4: 'Thường phù hợp',
+        giai_doan_5: '"Why" chuyển sang cảm xúc',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm rõ lợi ích và sự vượt trội trong phần "Why".' },
+        { name: '8. Đồng Nhất Hóa', desc: 'Xây dựng sự đồng cảm và liên kết trong phần "Why".' },
+        { name: '13. Ngụy trang', desc: 'Làm cho phần "Why" trở nên đáng tin cậy hơn.' },
+        { name: '14. Động lực (Momentum)', desc: 'Kéo người đọc qua các bước "Why", "Try", "Buy".' }
+      ]
+    },
+    {
+      id: '5_Basic_Objections',
+      name: '5 Basic Objections',
+      description: 'Công thức này giải quyết 5 phản đối cơ bản của khách hàng: Không có thời gian, Không có tiền, Không tin, Không cần, Không khẩn cấp.',
+      phuHop: {
+        giai_doan_1: 'Áp dụng khi có phản đối',
+        giai_doan_2: 'Áp dụng khi có phản đối',
+        giai_doan_3: 'Áp dụng khi có phản đối',
+        giai_doan_4: 'Áp dụng khi có phản đối',
+        giai_doan_5: 'Áp dụng khi có phản đối',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Biến các phản đối thành lợi thế hoặc làm cho chúng dễ chấp nhận hơn.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin từng bước để vượt qua các phản đối.' },
+        { name: '12. Độc Quyền Giải Pháp (Concentration)', desc: 'Loại bỏ các lựa chọn thay thế nếu khách hàng đang cân nhắc.' }
+      ]
+    },
+    {
+      id: 'A_FOREST',
+      name: 'A FOREST',
+      description: 'A FOREST là một tập hợp các kỹ thuật phong cách và thuyết phục để tăng cường tác động của thông điệp.',
+      phuHop: {
+        giai_doan_1: 'Chủ yếu là kỹ thuật phong cách',
+        giai_doan_2: 'Chủ yếu là kỹ thuật phong cách',
+        giai_doan_3: 'Chủ yếu là kỹ thuật phong cách',
+        giai_doan_4: 'Chủ yếu là kỹ thuật phong cách',
+        giai_doan_5: 'Chủ yếu là kỹ thuật phong cách',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '14. Đan xen (Interweaving)', desc: 'Kết hợp lời hứa, lý lẽ, cảm xúc và hình ảnh vào từng câu văn.' },
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Khuếch đại tác động cảm xúc và hình ảnh.' },
+        { name: '14. Xác minh (Verification)', desc: 'Cung cấp bằng chứng (số liệu, lời chứng thực).' },
+        { name: '14. Tâm trạng (Mood)', desc: 'Sử dụng từ ngữ và nhịp điệu để tạo bầu không khí.' }
+      ]
+    },
+    {
+      id: '4U',
+      name: '4U',
+      description: '4U (Useful - Urgent - Unique - Ultra-specific) là các tiêu chí để tạo ra tiêu đề và tuyên bố mạnh mẽ, hấp dẫn, rõ ràng và cụ thể.',
+      phuHop: {
+        giai_doan_1: 'Chủ yếu cho tiêu đề và tuyên bố mạnh mẽ',
+        giai_doan_2: 'Chủ yếu cho tiêu đề và tuyên bố mạnh mẽ',
+        giai_doan_3: 'Chủ yếu cho tiêu đề và tuyên bố mạnh mẽ',
+        giai_doan_4: 'Chủ yếu cho tiêu đề và tuyên bố mạnh mẽ',
+        giai_doan_5: 'Chủ yếu cho tiêu đề và tuyên bố mạnh mẽ',
+        tat_ca_giai_doan: 'Không áp dụng'
+      },
+      kyThuat: [
+        { name: '4. Ngôn từ hóa (38 Cách Tăng sức mạnh cho Tiêu đề)', desc: 'Làm cho thông điệp rõ ràng, súc tích và mạnh mẽ hơn.' },
+        { name: '7. Khuếch Đại Cảm Xúc (Intensification)', desc: 'Làm nổi bật lợi ích và điểm khác biệt của sản phẩm.' },
+        { name: '10. Tái Định Nghĩa (Definition)', desc: 'Tạo ra những góc nhìn mới mẻ và độc đáo cho sản phẩm.' },
+        { name: '9. Leo Thang Niềm Tin (Belief)', desc: 'Xây dựng niềm tin từng bước để thông điệp trở nên đáng tin cậy hơn.' }
+      ]
+    }
+  ],
+  greatLeads: [
+    {
+      id: 'offer_lead',
+      name: 'Mở bài chào hàng (Offer)',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Tại Sao Chúng Tôi Tặng Bạn 12 Tháng Hoàn Toàn MIỄN PHÍ Gói Tư Vấn Momentum Alert của Alexander Green"',
+        suggested: 'Gợi ý triển khai: "Đảm Bảo Cải Thiện Điểm Số Của Con Bạn – Nếu Không, Bạn Không Phải Trả Gì Cả! Phương pháp máy học tự động mới giúp tăng tốc độ học tập."',
+        details: 'Chi tiết: Tiêu đề đi thẳng vào cam kết lợi ích lớn và chính sách hoàn tiền, không có gì vòng vo.'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Tối đa hóa tỷ lệ chuyển đổi từ tệp khách hàng "đã nhận thức" và tin tưởng.',
+        marketSaturation: {
+          bao_hoa_1: 'Rất hiệu quả, đi thẳng vào ưu đãi. Thị trường mới chưa có sự hoài nghi từ các lời hứa cạnh tranh. Tập trung vào giá trị và sự khẩn cấp.',
+          bao_hoa_2: 'Hiệu quả nếu ưu đãi nổi bật và phóng đại. Cần vượt trội so với đối thủ để nổi bật.',
+          bao_hoa_3: 'Kém hiệu quả hơn, cần cơ chế độc đáo cho ưu đãi để khách hàng tin vào lời hứa. Lời hứa cần có "lý do tại sao" thuyết phục.',
+          bao_hoa_4: 'Rất kém hiệu quả, thị trường hoài nghi cao. Khách hàng không còn tin vào các lời hứa trực tiếp.',
+          bao_hoa_5: 'Không hiệu quả, thị trường mất niềm tin vào các lời hứa trực tiếp. Cần chuyển sang các cách tiếp cận gián tiếp, cảm xúc và dựa trên đồng cảm.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        },
+        notes: 'Lưu ý: Nếu có "cái bẫy" (ví dụ: yêu cầu mua thêm để nhận quà), cần nói rõ hoặc gợi mở sớm để xây dựng lòng tin.'
+      },
+      applicability: ['giai_doan_1', 'giai_doan_2'],
+      schwartzTechniques: ['7. Khuếch Đại Cảm Xúc (Intensification)', '10. Tái Định Nghĩa (Definition)'],
+      position: 'Vị trí trong bài quảng cáo: Thường xuất hiện ngay trong tiêu đề hoặc những dòng đầu tiên. Đóng vai trò "Chú ý" (Attention) trong AIDA, "Lời hứa" (Promise) trong 4P, hoặc là trọng tâm của phần "Hành động" (Action) khi ưu đãi là yếu tố thúc đẩy cuối cùng.'
+    },
+    {
+      id: 'promise_lead',
+      name: 'Mở bài lời hứa (Promise)',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Nụ Cười Hollywood Chỉ Sau 3 Ngày"',
+        suggested: 'Gợi ý triển khai: "Thay thế mọi viên thuốc trên kệ của bạn chỉ với một loại bổ sung duy nhất." (Replace Every Pill on Your Shelf With Just One Supplement)',
+        details: 'Chi tiết: Lời hứa rõ ràng về đa tác dụng của sản phẩm sức khỏe, không đề cập ngay đến tên sản phẩm.'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Hấp dẫn khách hàng đang trong giai đoạn cân nhắc, tìm hiểu giải pháp.',
+        marketSaturation: {
+          bao_hoa_1: 'Rất hiệu quả, mạnh mẽ với lời hứa cốt lõi. Sự đơn giản và trực tiếp là tối quan trọng.',
+          bao_hoa_2: 'Hiệu quả nếu phóng đại lời hứa đến giới hạn tuyệt đối. "Cuộc chạy đua vũ trang" của các tuyên bố.',
+          bao_hoa_3: 'Cần một "cơ chế mới" để thực hiện lời hứa cũ. Chuyển từ "cái gì" sang "làm thế nào".',
+          bao_hoa_4: 'Cần mở rộng hoặc phóng đại cơ chế. Làm cho cơ chế trở nên "tốt hơn" hoặc "độc đáo hơn".',
+          bao_hoa_5: 'Không hiệu quả, cần chuyển sang "đồng cảm" (Identification). Lý trí không còn hiệu quả.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        }
+      },
+      applicability: ['giai_doan_1', 'giai_doan_2', 'giai_doan_3'],
+      schwartzTechniques: ['7. Khuếch Đại Cảm Xúc (Intensification)', '11. Cách Hoạt Động (Mechanization)'],
+      position: 'Vị trí trong bài quảng cáo: Thường là tiêu đề chính, dòng mở đầu, và đôi khi là cả dòng kết thúc của quảng cáo. Là trọng tâm của phần "Lời hứa" (Promise) trong 4P hoặc "Mong muốn" (Desire) trong AIDA.'
+    },
+    {
+      id: 'problem_solution_lead',
+      name: 'Mở bài vấn đề – giải pháp',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Nếu bạn đang cảm thấy kiệt sức, thì thứ này sẽ giúp bạn vực dậy." (Geritol)',
+        suggested: 'Gợi ý triển khai: "The horrible mistake most investors are making right now…" (Sai lầm khủng khiếp nhất mà hầu hết nhà đầu tư đang mắc phải lúc này...)',
+        details: 'Chi tiết: Tiêu đề xoáy sâu vào sai lầm phổ biến của nhà đầu tư (vấn đề), sau đó dẫn dắt đến giải pháp (sản phẩm Momentum Alert).'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Thu hút khách hàng biết mình có vấn đề và đang tìm cách giải quyết. Rất phù hợp với thị trường sức khỏe, đầu tư, tài chính.',
+        marketSaturation: {
+          bao_hoa_1: 'Ít phù hợp, thị trường mới không cần giải quyết vấn đề đã biết rõ ràng. Tập trung vào lời hứa cốt lõi.',
+          bao_hoa_2: 'Có thể sử dụng nếu vấn đề được phóng đại để nổi bật so với đối thủ.',
+          bao_hoa_3: 'Hiệu quả, cần giới thiệu cơ chế mới cho giải pháp. Thị trường cần lý do mới để tin.',
+          bao_hoa_4: 'Rất hiệu quả, cần mở rộng/phóng đại cơ chế để giải quyết vấn đề. Làm cho giải pháp của bạn trở nên "tốt hơn" hoặc "độc đáo hơn".',
+          bao_hoa_5: 'Kém hiệu quả, cần chuyển sang đồng cảm. Lý trí không còn hiệu quả. Cần chạm vào cảm xúc sâu sắc hơn.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        }
+      },
+      applicability: ['giai_doan_3', 'giai_doan_4'],
+      schwartzTechniques: ['11. Cách Hoạt Động (Mechanization)', '9. Leo Thang Niềm Tin (Belief)', '7. Khuếch Đại Cảm Xúc (Intensification)', '12. Độc Quyền Giải Pháp (Concentration)'],
+      position: 'Vị trí trong bài quảng cáo: Bắt đầu bằng việc xác định "Vấn đề" (Problem) trong PAS, sau đó dẫn dắt đến "Giải pháp" (Solution) là sản phẩm. Trong AIDA, nó tạo "Chú ý" (Attention) bằng cách nêu vấn đề và "Mong muốn" (Desire) bằng cách gợi mở giải pháp.'
+    },
+    {
+      id: 'secret_lead',
+      name: 'Mở bài bí mật (Secret)',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Đã đóng cửa với nhà đầu tư mới suốt 6 năm — Giờ lại mở trở lại… “Chương trình Chaffee Royalty” đã biến mỗi $1 thành $50"',
+        suggested: 'Gợi ý triển khai: "Công ty Texas khai thác mỏ dầu trị giá 2,8 nghìn tỷ đô… dưới chân tháp Eiffel" (Texas Company Tapping $2.8 Trillion Oil Reserve… Under the Eiffel Tower)',
+        details: 'Chi tiết: Nghe khó tin, kích thích sự tò mò tối đa về một mỏ dầu khổng lồ dưới chân tháp Eiffel.'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Tạo sự tò mò khi niềm tin giảm và thị trường hoài nghi (bão hòa 3, 4). Hiệu quả khi thị trường "mất niềm tin" (bão hòa 5).',
+        marketSaturation: {
+          bao_hoa_1: 'Ít phù hợp, thị trường đơn giản không cần bí mật. Sự trực tiếp là quan trọng hơn.',
+          bao_hoa_2: 'Có thể hiệu quả để tạo sự khác biệt và vượt qua sự lặp lại đơn thuần.',
+          bao_hoa_3: 'Rất hiệu quả khi thị trường bội thực lời hứa, bí mật tạo sự mới mẻ và khôi phục độ tin cậy.',
+          bao_hoa_4: 'Rất hiệu quả để tạo sự tò mò khi niềm tin giảm và thị trường hoài nghi. Buộc họ phải đọc tiếp.',
+          bao_hoa_5: 'Hiệu quả khi thị trường "mất niềm tin", tạo sự hấp dẫn gián tiếp và chạm vào bản sắc hoặc ước mơ.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        },
+        notes: 'Lưu ý: Bí mật có thể không bao giờ được tiết lộ hoàn toàn trong bài quảng cáo, mà chỉ khi khách hàng mua sản phẩm/bonus kèm theo.'
+      },
+      applicability: ['giai_doan_3', 'giai_doan_4', 'giai_doan_5'],
+      schwartzTechniques: ['10. Tái Định Nghĩa (Definition)', '14. Động lực (Momentum)', '9. Leo Thang Niềm Tin (Belief)'],
+      position: 'Vị trí trong bài quảng cáo: Bí mật được giới thiệu ngay trong tiêu đề (tạo "Chú ý" - Attention), nhưng không được tiết lộ trong phần mở đầu. Các manh mối được đưa ra dần dần để duy trì "Sự quan tâm" (Interest) và "Mong muốn" (Desire) trong AIDA, buộc độc giả phải đọc tiếp để khám phá giải pháp.'
+    },
+    {
+      id: 'proclamation_lead',
+      name: 'Mở bài tuyên bố (Proclamation)',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Cảnh báo: Cuốn PDR 1995 của bạn đã lỗi thời"',
+        suggested: 'Gợi ý triển khai: "Just 50 People Control 90% of the World’s Energy Markets … And They All Have Me on Speed Dial" (Chỉ 50 người kiểm soát 90% thị trường năng lượng toàn cầu… Và tất cả họ đều có số tôi trong danh bạ ưu tiên)',
+        details: 'Chi tiết: Một tuyên bố gây sốc về một nhóm người tinh hoa kiểm soát năng lượng, khơi gợi sự hoài nghi và mong muốn biết sự thật.'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Đánh thức sự hoài nghi, kích thích suy nghĩ trái chiều. Phù hợp với thị trường tài chính, đầu tư, xu hướng lớn, y tế.',
+        marketSaturation: {
+          bao_hoa_1: 'Không phù hợp, quá phức tạp cho thị trường mới. Tập trung vào lời hứa cốt lõi.',
+          bao_hoa_2: 'Có thể tạo sốc nhưng cần phóng đại tuyên bố để vượt trội so với đối thủ.',
+          bao_hoa_3: 'Hiệu quả để gây sốc và phá vỡ sự hoài nghi, đặc biệt khi thị trường bội thực lời hứa. Cần một cơ chế mới.',
+          bao_hoa_4: 'Rất hiệu quả để gây sốc và thu hút sự chú ý khi niềm tin giảm. Buộc độc giả phải chú ý đến ý nghĩa ẩn chứa trong câu tuyên bố.',
+          bao_hoa_5: 'Rất hiệu quả để giật người đọc ra khỏi sự thờ ơ khi thị trường mất niềm tin. Chạm vào cảm xúc sâu sắc hơn.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        }
+      },
+      applicability: ['giai_doan_4', 'giai_doan_5'],
+      schwartzTechniques: ['7. Khuếch Đại Cảm Xúc (Intensification)', '14. Xác minh (Verification)', '8. Đồng Nhất Hóa', '13. Ngụy trang'],
+      position: 'Vị trí trong bài quảng cáo: Tuyên bố mạnh mẽ ở tiêu đề tạo "Chú ý" (Attention) và "Sự quan tâm" (Interest) bằng cách gây sốc. Sau đó, nội dung sẽ chứng minh tuyên bố và dần dần kết nối với sản phẩm như giải pháp.'
+    },
+    {
+      id: 'story_lead',
+      name: 'Mở bài câu chuyện (Story)',
+      exampleDetails: {
+        original: 'Ví dụ gốc: "Họ cười khi tôi ngồi vào máy tính… Nhưng rồi họ im bặt khi tôi bắt đầu sử dụng nó!"',
+        suggested: 'Gợi ý triển khai: "Vào một buổi chiều đẹp trời cuối xuân, cách đây hai mươi lăm năm, có hai chàng trai tốt nghiệp cùng một trường đại học. Họ rất giống nhau, cả hai đều có thành tích học tập trên trung bình, cả hai đều dễ mến và tràn đầy ước mơ hoài bão cho tương lai… Nhưng có một sự khác biệt. Một người là quản lý một phòng ban nhỏ của công ty đó. Người kia là chủ tịch." (Câu chuyện "Hai chàng trai trẻ" của Wall Street Journal)',
+        details: 'Chi tiết: Kể chuyện về hai người bạn có xuất phát điểm giống nhau nhưng số phận khác biệt, khơi gợi sự tò mò về "điều gì đã tạo nên sự khác biệt đó".'
+      },
+      applicationGuidance: {
+        purpose: 'Mục đích: Xây dựng niềm tin, thẩm quyền, cảm xúc. Dành cho sản phẩm có chiều sâu hoặc cần "chứng minh gián tiếp".',
+        marketSaturation: {
+          bao_hoa_1: 'Không phù hợp, quá gián tiếp cho thị trường mới. Tập trung vào lời hứa cốt lõi.',
+          bao_hoa_2: 'Không phù hợp, thị trường còn tin vào lời hứa trực tiếp.',
+          bao_hoa_3: 'Kém hiệu quả, thị trường vẫn cần lý do cụ thể và cơ chế mới.',
+          bao_hoa_4: 'Có thể sử dụng để xây dựng lại niềm tin khi thị trường hoài nghi nhưng vẫn cần lý do cụ thể.',
+          bao_hoa_5: 'Rất hiệu quả khi thị trường "mất niềm tin", tạo kết nối cảm xúc sâu sắc và chạm vào bản sắc hoặc ước mơ của khách hàng.',
+          bao_hoa_tat_ca: 'Mức độ phù hợp phụ thuộc vào giai đoạn bão hòa cụ thể. Hãy tham khảo chi tiết từng giai đoạn.'
+        }
+      },
+      applicability: ['giai_doan_5'],
+      schwartzTechniques: ['8. Đồng Nhất Hóa', '13. Ngụy trang', '14. Động lực (Momentum)'],
+      position: 'Vị trí trong bài quảng cáo: Câu chuyện được kể ngay từ đầu, tạo "Chú ý" (Attention) và "Sự quan tâm" (Interest) bằng cách chạm vào cảm xúc và sự đồng cảm. Nó dẫn dắt độc giả qua một hành trình cảm xúc trước khi dần hé lộ vấn đề và giải pháp.'
+    }
+  ]
+};
+
+function App() {
+  const [selectedCongThuc, setSelectedCongThuc] = useState(data.congThucCopywriting[0]);
+  const [selectedGiaiDoan, setSelectedGiaiDoan] = useState(data.giaiDoanNhanThuc[0]);
+  const [selectedGiaiDoanBaoHoa, setSelectedGiaiDoanBaoHoa] = useState(data.giaiDoanBaoHoa[0]);
+
+  // New state for selected Great Lead to display details
+  const [selectedGreatLead, setSelectedGreatLead] = useState(null);
+
+  const handleSelectCongThuc = (congThucId) => {
+    const congThuc = data.congThucCopywriting.find(ct => ct.id === congThucId);
+    setSelectedCongThuc(congThuc);
+    if (congThuc.id === '4C') {
+        setSelectedGiaiDoan(data.giaiDoanNhanThuc.find(gd => gd.id === 'tat_ca_giai_doan'));
+        setSelectedGiaiDoanBaoHoa(data.giaiDoanBaoHoa.find(gdbh => gdbh.id === 'bao_hoa_tat_ca'));
+    } else {
+        setSelectedGiaiDoan(data.giaiDoanNhanThuc[0]); // Reset to first if not 4C
+        setSelectedGiaiDoanBaoHoa(data.giaiDoanBaoHoa[0]); // Reset to first if not 4C
+    }
+    setSelectedGreatLead(null); // Reset selected great lead
+  };
+
+  const handleSelectGiaiDoan = (giaiDoanId) => {
+    setSelectedGiaiDoan(data.giaiDoanNhanThuc.find(gd => gd.id === giaiDoanId));
+    setSelectedGreatLead(null); // Reset selected great lead
+  };
+
+  const handleSelectGiaiDoanBaoHoa = (giaiDoanBaoHoaId) => {
+    setSelectedGiaiDoanBaoHoa(data.giaiDoanBaoHoa.find(gdbh => gdbh.id === giaiDoanBaoHoaId));
+    setSelectedGreatLead(null); // Reset selected great lead
+  };
+
+  const handleSelectGreatLead = (leadId) => {
+    const lead = data.greatLeads.find(l => l.id === leadId);
+    setSelectedGreatLead(lead);
+  };
+
+  const suitabilityText = selectedCongThuc.phuHop[selectedGiaiDoan.id];
+
+  // Filter great leads based on selected awareness stage and, for 4C, show all leads.
+  const applicableGreatLeads = data.greatLeads.filter(lead => {
+    if (selectedCongThuc.id === '4C') {
+        return true; // All great leads are applicable for 4C (general quality criteria)
+    }
+    // If "Tất cả các giai đoạn" is selected for awareness, show leads applicable to any specific stage
+    if (selectedGiaiDoan.id === 'tat_ca_giai_doan') {
+      return lead.applicability.some(stageId =>
+        stageId.startsWith('giai_doan_') && stageId !== 'tat_ca_giai_doan'
+      );
+    }
+    // Otherwise, filter by the specific selected awareness stage
+    return lead.applicability.includes(selectedGiaiDoan.id);
+  });
+
+  return (
+    <div className="p-6 bg-gray-50 min-h-screen font-inter">
+      <h1 className="text-4xl font-bold text-center text-red-600 mb-8 rounded-lg p-4 bg-white shadow-xl">
+        Công Thức Copywriting x Giai Đoạn Nhận Thức
+      </h1>
+      <p className="text-center text-gray-700 mb-12">
+        Khám phá mối liên hệ giữa các công thức copywriting và giai đoạn nhận thức của khách hàng, cùng với ứng dụng các kỹ thuật viết quảng cáo chuyển đổi cao của Lê Hữu Tuyến.
+      </p>
+
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Cột 1: Công Thức Copywriting */}
+        <div className="flex-1 bg-white p-6 rounded-lg shadow-md border border-blue-200">
+          <h2 className="text-2xl font-semibold text-blue-700 mb-4 pb-2 border-b border-blue-300">1. Công Thức Copywriting</h2>
+          <div className="space-y-2">
+            {data.congThucCopywriting.map((ct) => (
+              <button
+                key={ct.id}
+                onClick={() => handleSelectCongThuc(ct.id)}
+                className={`w-full text-left px-4 py-2 rounded-md transition-all duration-200
+                  ${selectedCongThuc.id === ct.id
+                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                    : 'bg-blue-100 text-blue-800 hover:bg-blue-200 hover:shadow-md'
+                  }`}
+              >
+                {ct.name}
+              </button>
+            ))}
+          </div>
+          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md text-gray-700">
+            <h3 className="font-semibold text-blue-700">Mô tả:</h3>
+            <p>{selectedCongThuc.description}</p>
+          </div>
+        </div>
+
+        {/* Cột 2: Giai Đoạn Nhận Thức Khách Hàng */}
+        <div className="flex-1 bg-white p-6 rounded-lg shadow-md border border-green-200">
+          <h2 className="text-2xl font-semibold text-green-700 mb-4 pb-2 border-b border-green-300">2. Giai Đoạn Nhận Thức Khách Hàng</h2>
+          <div className="space-y-2">
+            {data.giaiDoanNhanThuc.map((gd) => (
+                <button
+                    key={gd.id}
+                    onClick={() => handleSelectGiaiDoan(gd.id)}
+                    disabled={selectedCongThuc.id === '4C' && gd.id !== 'tat_ca_giai_doan'}
+                    className={`w-full text-left px-4 py-2 rounded-md transition-all duration-200
+                        ${selectedGiaiDoan.id === gd.id
+                            ? 'bg-green-600 text-white shadow-lg transform scale-105'
+                            : 'bg-green-100 text-green-800 hover:bg-green-200 hover:shadow-md'
+                        }
+                        ${selectedCongThuc.id === '4C' && gd.id !== 'tat_ca_giai_doan' ? 'opacity-50 cursor-not-allowed' : ''}
+                    `}
+                >
+                    {gd.name}
+                </button>
+            ))}
+          </div>
+          <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-md text-gray-700">
+            <h3 className="font-semibold text-green-700">Mô tả:</h3>
+            <p>{selectedGiaiDoan.description}</p>
+          </div>
+        </div>
+
+        {/* Cột 3: Giai Đoạn Bão Hòa Thị Trường */}
+        <div className="flex-1 bg-white p-6 rounded-lg shadow-md border border-orange-200">
+          <h2 className="text-2xl font-semibold text-orange-700 mb-4 pb-2 border-b border-orange-300">3. Giai Đoạn Bão Hòa Thị Trường</h2>
+          <div className="space-y-2">
+            {data.giaiDoanBaoHoa.map((gdbh) => (
+              <button
+                key={gdbh.id}
+                onClick={() => handleSelectGiaiDoanBaoHoa(gdbh.id)}
+                disabled={selectedCongThuc.id === '4C' && gdbh.id !== 'bao_hoa_tat_ca'}
+                className={`w-full text-left px-4 py-2 rounded-md transition-all duration-200
+                  ${selectedGiaiDoanBaoHoa.id === gdbh.id
+                    ? 'bg-orange-600 text-white shadow-lg transform scale-105'
+                    : 'bg-orange-100 text-orange-800 hover:bg-orange-200 hover:shadow-md'
+                  }
+                  ${selectedCongThuc.id === '4C' && gdbh.id !== 'bao_hoa_tat_ca' ? 'opacity-50 cursor-not-allowed' : ''}
+                `}
+              >
+                {gdbh.name}
+              </button>
+            ))}
+          </div>
+          <div className="mt-6 p-4 bg-orange-50 border border-orange-200 rounded-md text-gray-700">
+            <h3 className="font-semibold text-orange-700">Mô tả:</h3>
+            <p>{selectedGiaiDoanBaoHoa.description}</p>
+          </div>
+        </div>
+
+        {/* Cột 4: Ứng Dụng Chi Tiết */}
+        <div className="flex-1 bg-white p-6 rounded-lg shadow-md border border-purple-200">
+          <h2 className="text-2xl font-semibold text-purple-700 mb-4 pb-2 border-b border-purple-300">4. Ứng Dụng Chi Tiết</h2>
+          <div className="space-y-4">
+            <div className="p-4 bg-purple-50 border border-purple-200 rounded-md">
+              <h3 className="font-semibold text-purple-700 mb-2">Công thức: {selectedCongThuc.name}</h3>
+              <p className="text-gray-700">Giai đoạn nhận thức: {selectedGiaiDoan.name}</p>
+              <p className="text-gray-700">Giai đoạn bão hòa: {selectedGiaiDoanBaoHoa.name}</p>
+            </div>
+
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+              <h3 className="font-semibold text-yellow-700 mb-2">Mức độ phù hợp (Dựa trên Giai đoạn nhận thức):</h3>
+              <p className={`font-bold ${suitabilityText.includes('Rất lý tưởng') ? 'text-green-600' : suitabilityText.includes('Lý tưởng') ? 'text-blue-600' : suitabilityText.includes('Không') ? 'text-red-600' : 'text-orange-600'}`}>
+                {suitabilityText}
+              </p>
+              {suitabilityText && <p className="text-gray-700 text-sm italic">{selectedCongThuc.description}</p>}
+              <p className="text-gray-600 text-xs italic mt-2">
+                Lưu ý: Mức độ phù hợp tổng thể còn phụ thuộc vào sự kết hợp giữa Giai đoạn nhận thức và Giai đoạn bão hòa. Hãy liên hệ với Lê Hữu Tuyến để nhận tài liệu chi tiết về khóa Copywriting Bootcamp.
+              </p>
+            </div>
+
+            {/* Hiển thị các kiểu mở bài phù hợp */}
+            {applicableGreatLeads.length > 0 && (
+                <div className="p-4 bg-teal-50 border border-teal-200 rounded-md">
+                    <h3 className="font-semibold text-teal-700 mb-2">Các kiểu Mở bài phù hợp:</h3>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {applicableGreatLeads.map((lead) => (
+                            <button
+                                key={lead.id}
+                                onClick={() => handleSelectGreatLead(lead.id)}
+                                className={`px-4 py-2 rounded-md transition-all duration-200
+                                    ${selectedGreatLead && selectedGreatLead.id === lead.id
+                                        ? 'bg-teal-600 text-white shadow-lg transform scale-105'
+                                        : 'bg-teal-100 text-teal-800 hover:bg-teal-200 hover:shadow-md'
+                                    }`}
+                            >
+                                {lead.name}
+                            </button>
+                        ))}
+                    </div>
+
+                    {selectedGreatLead && (
+                        <div className="bg-white p-4 rounded-md shadow-inner border border-gray-200">
+                            <h4 className="text-xl font-bold text-teal-800 mb-2">{selectedGreatLead.name}</h4>
+                            <p className="text-sm text-gray-700 mb-2 italic">Ví dụ tiêu đề: "{selectedGreatLead.exampleDetails.original.split(': ')[1] || selectedGreatLead.exampleDetails.original}"</p>
+
+                            <div className="space-y-3 text-gray-700">
+                                {/* Only display requested fields */}
+                                <div>
+                                    <h5 className="font-semibold text-blue-700">Ví dụ minh họa</h5>
+                                    <p>{selectedGreatLead.exampleDetails.original}</p>
+                                    {selectedGreatLead.exampleDetails.suggested && <p>{selectedGreatLead.exampleDetails.suggested}</p>}
+                                    <p>{selectedGreatLead.exampleDetails.details}</p>
+                                </div>
+                                <div>
+                                    <h5 className="font-semibold text-blue-700">Gợi ý áp dụng:</h5>
+                                    <p>{selectedGreatLead.applicationGuidance.purpose}</p>
+                                    <p>
+                                        <span className="font-semibold">Giai đoạn bão hòa ({selectedGiaiDoanBaoHoa.name}):</span> {selectedGreatLead.applicationGuidance.marketSaturation[selectedGiaiDoanBaoHoa.id]}
+                                    </p>
+                                    {selectedGreatLead.applicationGuidance.notes && <p>{selectedGreatLead.applicationGuidance.notes}</p>}
+                                </div>
+                                <div>
+                                    <h5 className="font-semibold text-blue-700">Vị trí trong bài quảng cáo:</h5>
+                                    <p>{selectedGreatLead.position}</p>
+                                </div>
+                                {selectedGreatLead.schwartzTechniques && selectedGreatLead.schwartzTechniques.length > 0 && (
+                                    <div>
+                                        <h5 className="font-semibold text-purple-600">Kỹ thuật Copywriting liên quan:</h5>
+                                        <p className="text-sm">{selectedGreatLead.schwartzTechniques.join(', ')}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+              <h3 className="font-semibold text-red-700 mb-2">Các kỹ thuật Copywriting Bootcamp phù hợp cho Công thức đã chọn:</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                {selectedCongThuc.kyThuat.map((kt, index) => (
+                  <li key={index}>
+                    <span className="font-medium">{kt.name}:</span> {kt.desc}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-600 text-xs italic mt-2">
+                Các kỹ thuật này cần được áp dụng linh hoạt tùy theo Giai đoạn bão hòa: ví dụ, ở thị trường mới (Giai đoạn Bão hòa 1), các kỹ thuật đơn giản và trực tiếp hiệu quả; ở thị trường "mất niềm tin" (Giai đoạn Bão hòa 5), các kỹ thuật dựa trên "Đồng nhất hóa" và "Ngụy trang" sẽ quan trọng hơn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-12 p-6 bg-white rounded-lg shadow-md border border-gray-200">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b border-gray-300">5. Kiến Thức Copywriting Cụ Thể Từ Chương 6-14</h2>
+        <p className="text-gray-700 mb-4">
+          Dưới đây là gợi ý các kỹ thuật viết copywriting cụ thể mà bạn có thể áp dụng dựa trên công thức và giai đoạn đã chọn. Hãy tham khảo tài liệu "Kỹ thuật viết bán mà như không bán của Lê Hữu Tuyến" biết thêm chi tiết và ví dụ. Hoặc truy cập www.lehuutuyen.com.
+        </p>
+        <ul className="list-disc list-inside text-gray-700 space-y-2">
+          {selectedCongThuc.kyThuat.map((kt, index) => (
+            <li key={index} className="font-medium text-blue-700">
+              {kt.name}: <span className="text-gray-800">{kt.desc}</span>
+            </li>
+          ))}
+          {selectedCongThuc.id === '4C' && (
+            <>
+                <li className="font-medium text-blue-700">4. 'Ngôn từ hóa' (38 Cách Tăng sức mạnh cho Tiêu đề): <span className="text-gray-800">Kỹ thuật tăng cường sức mạnh cho tiêu đề bằng cách thể hiện nó, thêm hình ảnh thông qua cấu trúc câu để khuếch đại, định lượng hoặc làm sống động lời hứa.</span></li>
+                <li className="font-medium text-blue-700">14. Xác minh (Verification): <span className="text-gray-800">Đưa ra bằng chứng và thẩm quyền (số liệu thống kê, bài kiểm định, nhận xét từ khách hàng, lời xác nhận từ chuyên gia) để tăng độ tin cậy.</span></li>
+                <li className="font-medium text-blue-700">14. Đan xen (Interweaving): <span className="text-gray-800">Kết hợp lời hứa, lý lẽ, cảm xúc và hình ảnh vào với nhau, nén chặt chúng vào từng câu văn để tạo ra mạch thuyết phục không thể cưỡng lại.</span></li>
+            </>
+          )}
+          {selectedCongThuc.id === '4U' && (
+            <>
+                <li className="font-medium text-blue-700">4. 'Ngôn từ hóa' (38 Cách Tăng sức mạnh cho Tiêu đề): <span className="text-gray-800">Làm cho thông điệp rõ ràng, súc tích và mạnh mẽ hơn.</span></li>
+            </>
+          )}
+           {selectedCongThuc.id === '5_Basic_Objections' && (
+            <>
+                <li className="font-medium text-blue-700">10. Tái Định Nghĩa (Definition): <span className="text-gray-800">Biến các phản đối thành lợi thế hoặc làm cho chúng dễ chấp nhận hơn.</span></li>
+                <li className="font-medium text-blue-700">9. Leo Thang Niềm Tin (Belief): <span className="text-gray-800">Xây dựng niềm tin từng bước để vượt qua các phản đối.</span></li>
+                <li className="font-medium text-blue-700">12. Độc Quyền Giải Pháp (Concentration): <span className="text-gray-800">Loại bỏ các lựa chọn thay thế nếu khách hàng đang cân nhắc.</span></li>
+            </>
+           )}
+           {selectedCongThuc.id === 'A_FOREST' && (
+            <>
+                <li className="font-medium text-blue-700">14. Đan xen (Interweaving): <span className="text-gray-800">Kết hợp lời hứa, lý lẽ, cảm xúc và hình ảnh vào từng câu văn.</span></li>
+                <li className="font-medium text-blue-700">14. Xác minh (Verification): <span className="text-gray-800">Cung cấp bằng chứng (Facts, Examples, Statistics).</span></li>
+                <li className="font-medium text-blue-700">14. Tâm trạng (Mood): <span className="text-gray-800">Sử dụng từ ngữ và nhịp điệu để tạo bầu không khí.</span></li>
+            </>
+           )}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
